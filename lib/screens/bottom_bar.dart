@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/screens/home.dart';
-import 'package:shop_app/screens/profile.dart';
+import 'package:shop_app/screens/bottom_bar/cart.dart';
+import 'package:shop_app/screens/bottom_bar/home.dart';
+import 'package:shop_app/screens/bottom_bar/message.dart';
+import 'package:shop_app/screens/bottom_bar/profile.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({Key? key}) : super(key: key);
@@ -14,6 +16,8 @@ class _BottomBarState extends State<BottomBar> {
 
   static final List<Widget> _widgetOptions = [
     const Home(),
+    const Message(),
+    const Cart(),
     const Profile(),
   ];
 
@@ -33,8 +37,8 @@ class _BottomBarState extends State<BottomBar> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         elevation: 10.0,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
         selectedItemColor: Colors.blue,
         type: BottomNavigationBarType.fixed,
         unselectedItemColor: Colors.black,
@@ -43,14 +47,14 @@ class _BottomBarState extends State<BottomBar> {
             icon: Icon(Icons.home),
             label: 'Home',
           ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.search),
-          //   label: 'Search',
-          // ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.airplane_ticket),
-          //   label: 'Tickets',
-          // ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.message),
+            label: 'Message',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart_checkout),
+            label: 'Cart',
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Profile',
