@@ -1,5 +1,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:shop_app/constants/routes.dart';
 import 'package:shop_app/screens/on_board_page.dart';
 
@@ -12,6 +13,7 @@ class OnBoardScreen extends StatefulWidget {
 
 class _OnBoardScreenState extends State<OnBoardScreen> {
   double scrollPosition = 0;
+  final store = GetStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -170,6 +172,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                     padding: const EdgeInsets.only(bottom: 8),
                     child: TextButton(
                       onPressed: () {
+                        store.write('board', true);
                         Navigator.of(context).pushNamedAndRemoveUntil(
                             bottomBarRoute, (route) => false);
                       },
