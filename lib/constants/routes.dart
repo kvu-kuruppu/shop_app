@@ -1,0 +1,1 @@
+const onBoardScreenRoute = '/on-board-screen';
