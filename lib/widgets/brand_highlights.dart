@@ -1,5 +1,10 @@
-import 'package:dots_indicator/dots_indicator.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:getwidget/getwidget.dart';
+import 'package:shop_app/services/firebase_services.dart';
+import 'package:shop_app/widgets/dots_indicator.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class BrandHighlights extends StatefulWidget {
   const BrandHighlights({Key? key}) : super(key: key);
@@ -9,14 +14,32 @@ class BrandHighlights extends StatefulWidget {
 }
 
 class _BrandHighlightsState extends State<BrandHighlights> {
+  final FirebaseServices _service = FirebaseServices();
   double scrollPosition = 0;
+  final List _brandAd = [];
+
+  @override
+  void initState() {
+    getBrandAd();
+    super.initState();
+  }
+
+  getBrandAd() {
+    return _service.brandAd.get().then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        setState(() {
+          _brandAd.add(doc);
+        });
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(15, 5, 15, 10),
       child: Container(
-        color: Colors.white,
+        color: Colors.white.withOpacity(0.3),
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.all(10),
         child: Column(
@@ -37,14 +60,15 @@ class _BrandHighlightsState extends State<BrandHighlights> {
                 width: MediaQuery.of(context).size.width,
                 child: Stack(
                   children: [
-                    PageView(
+                    PageView.builder(
+                      itemCount: _brandAd.length,
                       onPageChanged: (value) {
                         setState(() {
                           scrollPosition = value.toDouble();
                         });
                       },
-                      children: [
-                        Padding(
+                      itemBuilder: (context, index) {
+                        return Padding(
                           padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
                           child: Row(
                             children: [
@@ -56,10 +80,14 @@ class _BrandHighlightsState extends State<BrandHighlights> {
                                     Container(
                                       height: 120,
                                       color: Colors.deepOrange,
-                                      child: const Center(
-                                        child: Text(
-                                          'YouTube Ad Video\nAbout Brand',
-                                          textAlign: TextAlign.center,
+                                      child: YoutubePlayer(
+                                        controller: YoutubePlayerController(
+                                          initialVideoId: _brandAd[index]
+                                              ['youtube'],
+                                          flags: const YoutubePlayerFlags(
+                                            autoPlay: true,
+                                            mute: true,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -68,33 +96,27 @@ class _BrandHighlightsState extends State<BrandHighlights> {
                                     ),
                                     Row(
                                       children: [
+                                        // Image 1
                                         Expanded(
                                           flex: 1,
-                                          child: Container(
-                                            height: 45,
-                                            color: Colors.red,
-                                            child: const Center(
-                                              child: Text(
-                                                'Ad',
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
+                                          child: BrandHighlightItem(
+                                            brandList: _brandAd,
+                                            index: index,
+                                            imgNo: 1,
+                                            height: 50,
                                           ),
                                         ),
                                         const SizedBox(
                                           width: 5,
                                         ),
+                                        // Image 2
                                         Expanded(
                                           flex: 1,
-                                          child: Container(
-                                            height: 45,
-                                            color: Colors.red,
-                                            child: const Center(
-                                              child: Text(
-                                                'Ad',
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
+                                          child: BrandHighlightItem(
+                                            brandList: _brandAd,
+                                            index: index,
+                                            imgNo: 2,
+                                            height: 50,
                                           ),
                                         ),
                                       ],
@@ -105,206 +127,68 @@ class _BrandHighlightsState extends State<BrandHighlights> {
                               const SizedBox(
                                 width: 10,
                               ),
+                              // Image 3
                               Expanded(
                                 flex: 2,
                                 child: Column(
                                   children: [
-                                    Container(
-                                      height: 175,
-                                      color: Colors.blue,
-                                      child: const Center(
-                                        child: Text(
-                                          'Ad',
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
+                                    BrandHighlightItem(
+                                      brandList: _brandAd,
+                                      index: index,
+                                      imgNo: 3,
+                                      height: 180,
                                     ),
                                   ],
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                flex: 5,
-                                child: Column(
-                                  children: [
-                                    // YouTube Ad Video About Brand
-                                    Container(
-                                      height: 120,
-                                      color: Colors.deepOrange,
-                                      child: const Center(
-                                        child: Text(
-                                          'YouTube Ad Video\nAbout Brand',
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          flex: 1,
-                                          child: Container(
-                                            height: 45,
-                                            color: Colors.red,
-                                            child: const Center(
-                                              child: Text(
-                                                'Ad',
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 5,
-                                        ),
-                                        Expanded(
-                                          flex: 1,
-                                          child: Container(
-                                            height: 45,
-                                            color: Colors.red,
-                                            child: const Center(
-                                              child: Text(
-                                                'Ad',
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      height: 175,
-                                      color: Colors.blue,
-                                      child: const Center(
-                                        child: Text(
-                                          'Ad',
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                flex: 5,
-                                child: Column(
-                                  children: [
-                                    // YouTube Ad Video About Brand
-                                    Container(
-                                      height: 120,
-                                      color: Colors.deepOrange,
-                                      child: const Center(
-                                        child: Text(
-                                          'YouTube Ad Video\nAbout Brand',
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          flex: 1,
-                                          child: Container(
-                                            height: 45,
-                                            color: Colors.red,
-                                            child: const Center(
-                                              child: Text(
-                                                'Ad',
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 5,
-                                        ),
-                                        Expanded(
-                                          flex: 1,
-                                          child: Container(
-                                            height: 45,
-                                            color: Colors.red,
-                                            child: const Center(
-                                              child: Text(
-                                                'Ad',
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      height: 175,
-                                      color: Colors.blue,
-                                      child: const Center(
-                                        child: Text(
-                                          'Ad',
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                        );
+                      },
                     ),
                   ],
                 ),
               ),
             ),
-            DotsIndicator(
-              dotsCount: 3,
-              position: scrollPosition,
-              decorator: const DotsDecorator(
-                color: Colors.grey,
-                activeColor: Color.fromARGB(255, 33, 53, 167),
-                spacing: EdgeInsets.all(8),
-                size: Size.square(6),
-                activeSize: Size(12, 6),
-              ),
-            ),
+            _brandAd.isEmpty
+                ? Container()
+                : DotsIndicatorWidget(
+                    scrollPosition: scrollPosition,
+                    dots: _brandAd.length,
+                  ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class BrandHighlightItem extends StatelessWidget {
+  const BrandHighlightItem({
+    Key? key,
+    required this.index,
+    required this.imgNo,
+    required this.height,
+    required this.brandList,
+  }) : super(key: key);
+
+  final List brandList;
+  final int index;
+  final int imgNo;
+  final double height;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: height,
+      child: CachedNetworkImage(
+        imageUrl: brandList[index]['image$imgNo'],
+        fit: BoxFit.cover,
+        placeholder: (context, url) => GFShimmer(
+          child: Container(
+            height: height,
+            color: Colors.grey.shade400,
+          ),
         ),
       ),
     );

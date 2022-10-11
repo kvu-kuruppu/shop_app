@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/services/firebase_services.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shop_app/widgets/dots_indicator.dart';
 
 class BannerWidget extends StatefulWidget {
   const BannerWidget({Key? key}) : super(key: key);
@@ -76,22 +76,17 @@ class _BannerWidgetState extends State<BannerWidget> {
             ),
           ),
         ),
-        Positioned(
-          bottom: 10,
-          left: 0,
-          right: 0,
-          child: DotsIndicator(
-            dotsCount: 3,
-            position: scrollPosition,
-            decorator: const DotsDecorator(
-              color: Colors.grey,
-              activeColor: Color.fromARGB(255, 33, 53, 167),
-              spacing: EdgeInsets.all(8),
-              size: Size.square(6),
-              activeSize: Size(12, 6),
-            ),
-          ),
-        ),
+        _bannerImg.isEmpty
+            ? Container()
+            : Positioned(
+                bottom: 10,
+                left: 0,
+                right: 0,
+                child: DotsIndicatorWidget(
+                  scrollPosition: scrollPosition,
+                  dots: _bannerImg.length,
+                ),
+              ),
       ],
     );
   }
