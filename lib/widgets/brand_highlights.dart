@@ -133,8 +133,9 @@ class _BrandHighlightsState extends State<BrandHighlights> {
                                 flex: 5,
                                 child: Column(
                                   children: [
+                                    // YouTube Ad Video About Brand
                                     Container(
-                                      height: 100,
+                                      height: 120,
                                       color: Colors.deepOrange,
                                       child: const Center(
                                         child: Text(
@@ -150,19 +151,15 @@ class _BrandHighlightsState extends State<BrandHighlights> {
                                       children: [
                                         Expanded(
                                           flex: 1,
-                                          child: Column(
-                                            children: [
-                                              Container(
-                                                height: 45,
-                                                color: Colors.red,
-                                                child: const Center(
-                                                  child: Text(
-                                                    'Ad',
-                                                    textAlign: TextAlign.center,
-                                                  ),
-                                                ),
-                                              )
-                                            ],
+                                          child: Container(
+                                            height: 45,
+                                            color: Colors.red,
+                                            child: const Center(
+                                              child: Text(
+                                                'Ad',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
                                           ),
                                         ),
                                         const SizedBox(
@@ -170,19 +167,15 @@ class _BrandHighlightsState extends State<BrandHighlights> {
                                         ),
                                         Expanded(
                                           flex: 1,
-                                          child: Column(
-                                            children: [
-                                              Container(
-                                                height: 45,
-                                                color: Colors.red,
-                                                child: const Center(
-                                                  child: Text(
-                                                    'Ad',
-                                                    textAlign: TextAlign.center,
-                                                  ),
-                                                ),
-                                              )
-                                            ],
+                                          child: Container(
+                                            height: 45,
+                                            color: Colors.red,
+                                            child: const Center(
+                                              child: Text(
+                                                'Ad',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -195,15 +188,19 @@ class _BrandHighlightsState extends State<BrandHighlights> {
                               ),
                               Expanded(
                                 flex: 2,
-                                child: Container(
-                                  height: 170,
-                                  color: Colors.blue,
-                                  child: const Center(
-                                    child: Text(
-                                      'Ad',
-                                      textAlign: TextAlign.center,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 175,
+                                      color: Colors.blue,
+                                      child: const Center(
+                                        child: Text(
+                                          'Ad',
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 ),
                               ),
                             ],
@@ -217,8 +214,9 @@ class _BrandHighlightsState extends State<BrandHighlights> {
                                 flex: 5,
                                 child: Column(
                                   children: [
+                                    // YouTube Ad Video About Brand
                                     Container(
-                                      height: 100,
+                                      height: 120,
                                       color: Colors.deepOrange,
                                       child: const Center(
                                         child: Text(
@@ -234,19 +232,15 @@ class _BrandHighlightsState extends State<BrandHighlights> {
                                       children: [
                                         Expanded(
                                           flex: 1,
-                                          child: Column(
-                                            children: [
-                                              Container(
-                                                height: 45,
-                                                color: Colors.red,
-                                                child: const Center(
-                                                  child: Text(
-                                                    'Ad',
-                                                    textAlign: TextAlign.center,
-                                                  ),
-                                                ),
-                                              )
-                                            ],
+                                          child: Container(
+                                            height: 45,
+                                            color: Colors.red,
+                                            child: const Center(
+                                              child: Text(
+                                                'Ad',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
                                           ),
                                         ),
                                         const SizedBox(
@@ -254,19 +248,15 @@ class _BrandHighlightsState extends State<BrandHighlights> {
                                         ),
                                         Expanded(
                                           flex: 1,
-                                          child: Column(
-                                            children: [
-                                              Container(
-                                                height: 45,
-                                                color: Colors.red,
-                                                child: const Center(
-                                                  child: Text(
-                                                    'Ad',
-                                                    textAlign: TextAlign.center,
-                                                  ),
-                                                ),
-                                              )
-                                            ],
+                                          child: Container(
+                                            height: 45,
+                                            color: Colors.red,
+                                            child: const Center(
+                                              child: Text(
+                                                'Ad',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -279,15 +269,19 @@ class _BrandHighlightsState extends State<BrandHighlights> {
                               ),
                               Expanded(
                                 flex: 2,
-                                child: Container(
-                                  height: 170,
-                                  color: Colors.blue,
-                                  child: const Center(
-                                    child: Text(
-                                      'Ad',
-                                      textAlign: TextAlign.center,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 175,
+                                      color: Colors.blue,
+                                      child: const Center(
+                                        child: Text(
+                                          'Ad',
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 ),
                               ),
                             ],

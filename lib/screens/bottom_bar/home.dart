@@ -72,7 +72,7 @@ class Home extends StatelessWidget {
               // Brand Highlights
               const BrandHighlights(),
               // Category
-              CategoryWidget(),
+              const CategoryWidget(),
             ],
           ),
         ],
