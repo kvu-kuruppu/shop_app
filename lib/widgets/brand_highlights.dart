@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:shop_app/services/firebase_services.dart';
 import 'package:shop_app/widgets/dots_indicator.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class BrandHighlights extends StatefulWidget {
   const BrandHighlights({Key? key}) : super(key: key);
@@ -80,14 +80,10 @@ class _BrandHighlightsState extends State<BrandHighlights> {
                                     Container(
                                       height: 120,
                                       color: Colors.deepOrange,
-                                      child: YoutubePlayer(
-                                        controller: YoutubePlayerController(
-                                          initialVideoId: _brandAd[index]
-                                              ['youtube'],
-                                          flags: const YoutubePlayerFlags(
-                                            autoPlay: true,
-                                            mute: true,
-                                          ),
+                                      child: const Center(
+                                        child: Text(
+                                          'YouTube Ad Video\nAbout Brand',
+                                          textAlign: TextAlign.center,
                                         ),
                                       ),
                                     ),
@@ -164,18 +160,18 @@ class _BrandHighlightsState extends State<BrandHighlights> {
 }
 
 class BrandHighlightItem extends StatelessWidget {
-  const BrandHighlightItem({
-    Key? key,
-    required this.index,
-    required this.imgNo,
-    required this.height,
-    required this.brandList,
-  }) : super(key: key);
-
   final List brandList;
   final int index;
   final int imgNo;
   final double height;
+
+  const BrandHighlightItem({
+    Key? key,
+    required this.brandList,
+    required this.index,
+    required this.imgNo,
+    required this.height,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
