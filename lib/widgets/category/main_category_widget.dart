@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/firestore.dart';
 import 'package:shop_app/models/main_category_model.dart';
-import 'dart:developer' as devtools show log;
-
 import 'package:shop_app/widgets/category/sub_category_widget.dart';
 
 class MainCategoryWidget extends StatefulWidget {
