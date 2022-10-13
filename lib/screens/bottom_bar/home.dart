@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/widgets/banner.dart';
 import 'package:shop_app/widgets/brand_highlights.dart';
-import 'package:shop_app/widgets/category.dart';
+import 'package:shop_app/widgets/category/category_widget.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -10,10 +10,13 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.orangeAccent,
+        backgroundColor: const Color.fromARGB(255, 25, 10, 109),
         title: const Text(
           'Shopping App',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700),
+          style: TextStyle(
+            // color: Colors.white,
+            fontWeight: FontWeight.w700,
+          ),
         ),
         centerTitle: true,
         elevation: 0,
@@ -22,12 +25,12 @@ class Home extends StatelessWidget {
             onPressed: () {},
             icon: const Icon(
               Icons.shopping_cart,
-              color: Colors.black,
+              // color: Colors.black,
             ),
           ),
         ],
       ),
-      backgroundColor: Colors.lightBlue,
+      backgroundColor: const Color.fromARGB(255, 124, 178, 248),
       body: ListView(
         children: [
           Column(
@@ -35,8 +38,14 @@ class Home extends StatelessWidget {
               // Search
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: const Color.fromARGB(255, 25, 10, 109),
+                      width: 4.0,
+                    ),
+                  ),
                   child: const TextField(
                     decoration: InputDecoration(
                       fillColor: Colors.white,
@@ -95,14 +104,17 @@ class StuffText extends StatelessWidget {
         const Icon(
           Icons.info_outline,
           size: 20,
-          color: Colors.white,
+          color: Color.fromARGB(255, 25, 10, 109),
         ),
         const SizedBox(
           width: 5,
         ),
         Text(
           text,
-          style: const TextStyle(color: Colors.white, fontSize: 12),
+          style: const TextStyle(
+            fontSize: 12,
+            color: Color.fromARGB(255, 25, 10, 109),
+          ),
         ),
       ],
     );

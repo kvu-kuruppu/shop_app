@@ -3,6 +3,7 @@ import 'package:shop_app/screens/bottom_bar/cart.dart';
 import 'package:shop_app/screens/bottom_bar/home.dart';
 import 'package:shop_app/screens/bottom_bar/message.dart';
 import 'package:shop_app/screens/bottom_bar/profile.dart';
+import 'package:shop_app/screens/bottom_bar/category_screen.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class _BottomBarState extends State<BottomBar> {
 
   static final List<Widget> _widgetOptions = [
     const Home(),
+    const CategoryScreen(),
     const Message(),
     const Cart(),
     const Profile(),
@@ -40,12 +42,16 @@ class _BottomBarState extends State<BottomBar> {
         showSelectedLabels: true,
         showUnselectedLabels: true,
         selectedItemColor: Colors.blue,
-        type: BottomNavigationBarType.fixed,
         unselectedItemColor: Colors.black,
+        type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.category),
+            label: 'Category',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.message),

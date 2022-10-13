@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutterfire_ui/firestore.dart';
+import 'package:shop_app/models/category_model.dart';
+import 'dart:developer' as devtools show log;
 
 class CategoryWidget extends StatefulWidget {
   const CategoryWidget({Key? key}) : super(key: key);
@@ -8,14 +11,7 @@ class CategoryWidget extends StatefulWidget {
 }
 
 class _CategoryWidgetState extends State<CategoryWidget> {
-  final List<String> _categoryLabel = <String>[
-    '*Picked for you',
-    'Mobiles',
-    'Fashion',
-    'Groceries',
-  ];
-
-  int _index = 0;
+  String? _selectedCategory;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +19,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
       padding: const EdgeInsets.fromLTRB(15, 5, 15, 10),
       child: Column(
         children: [
+          // Stores for you
           Row(
             children: const [
               Text(
@@ -39,19 +36,23 @@ class _CategoryWidgetState extends State<CategoryWidget> {
             child: Row(
               children: [
                 Expanded(
-                  child: ListView.builder(
+                  child: FirestoreListView<CategoryModel>(
                     scrollDirection: Axis.horizontal,
-                    itemCount: _categoryLabel.length,
-                    itemBuilder: (BuildContext context, int index) {
+                    query: categoryCollection,
+                    itemBuilder: (context, snapshot) {
+                      CategoryModel category = snapshot.data();
                       return Padding(
                         padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
                         child: ActionChip(
                           backgroundColor:
-                              _index == index ? Colors.amber : Colors.green,
-                          label: Text(_categoryLabel[index]),
+                              _selectedCategory == category.categoryName
+                                  ? Colors.green
+                                  : Colors.amber,
+                          label: Text(category.categoryName),
                           onPressed: () {
                             setState(() {
-                              _index = index;
+                              devtools.log(category.categoryName);
+                              _selectedCategory = category.categoryName;
                             });
                           },
                         ),
@@ -59,9 +60,21 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                     },
                   ),
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.arrow_downward),
+                const SizedBox(
+                  width: 5,
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 25, 10, 109),
+                    shape: BoxShape.circle,
+                  ),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.arrow_downward,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ],
             ),

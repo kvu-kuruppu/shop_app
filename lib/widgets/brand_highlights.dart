@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:shop_app/services/firebase_services.dart';
@@ -38,10 +37,8 @@ class _BrandHighlightsState extends State<BrandHighlights> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(15, 5, 15, 10),
-      child: Container(
-        color: Colors.white.withOpacity(0.3),
+      child: SizedBox(
         width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.all(10),
         child: Column(
           children: [
             // Brand Highlights
@@ -49,7 +46,11 @@ class _BrandHighlightsState extends State<BrandHighlights> {
               children: const [
                 Text(
                   'Brand Highlights',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                    // color: Colors.white,
+                  ),
                 ),
               ],
             ),
@@ -58,91 +59,89 @@ class _BrandHighlightsState extends State<BrandHighlights> {
               child: SizedBox(
                 height: 180,
                 width: MediaQuery.of(context).size.width,
-                child: Stack(
-                  children: [
-                    PageView.builder(
-                      itemCount: _brandAd.length,
-                      onPageChanged: (value) {
-                        setState(() {
-                          scrollPosition = value.toDouble();
-                        });
-                      },
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                flex: 5,
-                                child: Column(
-                                  children: [
-                                    // YouTube Ad Video About Brand
-                                    Container(
-                                      height: 120,
-                                      color: Colors.deepOrange,
-                                      child: const Center(
-                                        child: Text(
-                                          'YouTube Ad Video\nAbout Brand',
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Row(
-                                      children: [
-                                        // Image 1
-                                        Expanded(
-                                          flex: 1,
-                                          child: BrandHighlightItem(
-                                            brandList: _brandAd,
-                                            index: index,
-                                            imgNo: 1,
-                                            height: 50,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 5,
-                                        ),
-                                        // Image 2
-                                        Expanded(
-                                          flex: 1,
-                                          child: BrandHighlightItem(
-                                            brandList: _brandAd,
-                                            index: index,
-                                            imgNo: 2,
-                                            height: 50,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              // Image 3
-                              Expanded(
-                                flex: 2,
-                                child: Column(
-                                  children: [
-                                    BrandHighlightItem(
+                child: PageView.builder(
+                  itemCount: _brandAd.length,
+                  onPageChanged: (value) {
+                    setState(() {
+                      scrollPosition = value.toDouble();
+                    });
+                  },
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+                      child: SingleChildScrollView(
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 5,
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: 150,
+                                    color: Colors.red,
+                                    child: BrandHighlightItem(
                                       brandList: _brandAd,
                                       index: index,
-                                      imgNo: 3,
-                                      height: 180,
+                                      imgNo: 1,
+                                      height: 100,
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    children: [
+                                      // Image 1
+                                      Expanded(
+                                        flex: 3,
+                                        child: BrandHighlightItem(
+                                          brandList: _brandAd,
+                                          index: index,
+                                          imgNo: 1,
+                                          height: 100,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      // Image 2
+                                      Expanded(
+                                        flex: 3,
+                                        child: BrandHighlightItem(
+                                          brandList: _brandAd,
+                                          index: index,
+                                          imgNo: 2,
+                                          height: 100,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                  ],
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            // Image 3
+                            Expanded(
+                              flex: 2,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  BrandHighlightItem(
+                                    brandList: _brandAd,
+                                    index: index,
+                                    imgNo: 3,
+                                    height: 210,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
