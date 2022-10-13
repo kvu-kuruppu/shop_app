@@ -6,7 +6,9 @@ import 'package:shop_app/screens/bottom_bar/profile.dart';
 import 'package:shop_app/screens/bottom_bar/category_screen.dart';
 
 class BottomBar extends StatefulWidget {
-  const BottomBar({Key? key}) : super(key: key);
+  final int? index;
+
+  const BottomBar({Key? key, this.index}) : super(key: key);
 
   @override
   State<BottomBar> createState() => _BottomBarState();
@@ -30,6 +32,16 @@ class _BottomBarState extends State<BottomBar> {
   }
 
   @override
+  void initState() {
+    if (widget.index != null) {
+      setState(() {
+        _selectedIndex = widget.index!;
+      });
+    }
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -39,9 +51,11 @@ class _BottomBarState extends State<BottomBar> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         elevation: 10.0,
+        selectedFontSize: 16,
+        selectedIconTheme: const IconThemeData(size: 30),
         showSelectedLabels: true,
         showUnselectedLabels: true,
-        selectedItemColor: Colors.blue,
+        selectedItemColor: Color.fromARGB(255, 25, 2, 156),
         unselectedItemColor: Colors.black,
         type: BottomNavigationBarType.fixed,
         items: const [

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/firestore.dart';
 import 'package:shop_app/models/sub_category_model.dart';
@@ -30,7 +31,7 @@ class SubCategoryWidget extends StatelessWidget {
             itemCount: snapshot.docs.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
-              childAspectRatio: snapshot.docs.isEmpty ? 1/0.1 : 1 / 1.1,
+              childAspectRatio: snapshot.docs.isEmpty ? 1 / 0.1 : 1 / 1.1,
             ),
             itemBuilder: (context, index) {
               // // if we reached the end of the currently obtained items, we try to
@@ -45,7 +46,8 @@ class SubCategoryWidget extends StatelessWidget {
 
               return InkWell(
                 onTap: () {
-                  print('Main Category: ${subCategory.mainCategoryName} | Main Category: ${subCategory.subCategoryName}');
+                  print(
+                      'Main Category: ${subCategory.mainCategoryName} | Main Category: ${subCategory.subCategoryName}');
                 },
                 child: Column(
                   children: [
@@ -54,7 +56,16 @@ class SubCategoryWidget extends StatelessWidget {
                       width: 60,
                       child: FittedBox(
                         fit: BoxFit.scaleDown,
-                        child: Image.network(subCategory.image),
+                        child: CachedNetworkImage(
+                          imageUrl: subCategory.image,
+                          placeholder: (context, _) {
+                            return Container(
+                              height: 60,
+                              width: 60,
+                              color: Colors.grey.shade300,
+                            );
+                          },
+                        ),
                       ),
                     ),
                     Text(subCategory.subCategoryName),

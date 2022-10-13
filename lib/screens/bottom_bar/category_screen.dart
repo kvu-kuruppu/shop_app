@@ -84,6 +84,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                           child: Text(
                             category.categoryName,
                             textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: (selectedCategory == category.categoryName)
+                                  ? Colors.deepOrange
+                                  : Colors.black,
+                            ),
                           ),
                         ),
                         // const Divider(),

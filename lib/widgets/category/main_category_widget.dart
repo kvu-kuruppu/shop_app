@@ -25,6 +25,8 @@ class _MainCategoryWidgetState extends State<MainCategoryWidget> {
           MainCategoryModel mainCategory = snapshot.data();
           return ExpansionTile(
             title: Text(mainCategory.mainCategory),
+            textColor: Colors.deepOrange,
+            iconColor: Colors.deepOrange,
             children: [
               SubCategoryWidget(
                 selectedSubCategory: mainCategory.mainCategory,

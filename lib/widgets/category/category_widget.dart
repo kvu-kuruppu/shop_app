@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/firestore.dart';
+import 'package:shop_app/constants/routes.dart';
 import 'package:shop_app/models/category_model.dart';
 import 'dart:developer' as devtools show log;
+
+import 'package:shop_app/screens/bottom_bar.dart';
 
 class CategoryWidget extends StatefulWidget {
   const CategoryWidget({Key? key}) : super(key: key);
@@ -69,7 +72,16 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                     shape: BoxShape.circle,
                   ),
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const BottomBar(
+                            index: 1,
+                          ),
+                        ),
+                      );
+                    },
                     icon: const Icon(
                       Icons.arrow_downward,
                       color: Colors.white,
