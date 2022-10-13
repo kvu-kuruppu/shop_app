@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/firestore.dart';
-
 import 'package:shop_app/models/sub_category_model.dart';
 
 class SubCategoryWidget extends StatelessWidget {
@@ -31,7 +30,7 @@ class SubCategoryWidget extends StatelessWidget {
             itemCount: snapshot.docs.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
-              childAspectRatio: snapshot.docs.isEmpty ? 1/1.1 : 1 / 1.1,
+              childAspectRatio: snapshot.docs.isEmpty ? 1/0.1 : 1 / 1.1,
             ),
             itemBuilder: (context, index) {
               // // if we reached the end of the currently obtained items, we try to
@@ -44,18 +43,23 @@ class SubCategoryWidget extends StatelessWidget {
 
               SubCategoryModel subCategory = snapshot.docs[index].data();
 
-              return Column(
-                children: [
-                  SizedBox(
-                    height: 60,
-                    width: 60,
-                    child: FittedBox(
-                      fit: BoxFit.fill,
-                      child: Image.network(subCategory.image),
+              return InkWell(
+                onTap: () {
+                  print('Main Category: ${subCategory.mainCategoryName} | Main Category: ${subCategory.subCategoryName}');
+                },
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 60,
+                      width: 60,
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Image.network(subCategory.image),
+                      ),
                     ),
-                  ),
-                  Text(subCategory.subCategoryName),
-                ],
+                    Text(subCategory.subCategoryName),
+                  ],
+                ),
               );
             },
           );
