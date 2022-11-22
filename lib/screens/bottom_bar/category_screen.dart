@@ -77,6 +77,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                           padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
                           child: CachedNetworkImage(
                             imageUrl: category.image,
+                            placeholder: (context, url) =>
+                                const CircularProgressIndicator(),
                           ),
                         ),
                         Padding(

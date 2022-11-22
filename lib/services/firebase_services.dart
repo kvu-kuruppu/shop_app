@@ -6,4 +6,5 @@ class FirebaseServices {
   CollectionReference categories = FirebaseFirestore.instance.collection('categories');
   CollectionReference mainCategory = FirebaseFirestore.instance.collection('mainCategory');
   CollectionReference subCategory = FirebaseFirestore.instance.collection('subCategory');
+  CollectionReference products = FirebaseFirestore.instance.collection('products');
 }

@@ -47,39 +47,46 @@ class _BottomBarState extends State<BottomBar> {
       body: Center(
         child: _widgetOptions[_selectedIndex],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        elevation: 10.0,
-        selectedFontSize: 16,
-        selectedIconTheme: const IconThemeData(size: 30),
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        selectedItemColor: Color.fromARGB(255, 25, 2, 156),
-        unselectedItemColor: Colors.black,
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+          border: Border(
+            top: BorderSide(color: Color.fromARGB(78, 25, 2, 156)),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.category),
-            label: 'Category',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.message),
-            label: 'Message',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_checkout),
-            label: 'Cart',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
+        ),
+        child: BottomNavigationBar(
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          elevation: 10.0,
+          selectedFontSize: 16,
+          selectedIconTheme: const IconThemeData(size: 30),
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
+          selectedItemColor: const Color.fromARGB(255, 25, 2, 156),
+          unselectedItemColor: Colors.black,
+          type: BottomNavigationBarType.fixed,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.category),
+              label: 'Category',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.message),
+              label: 'Message',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart_checkout),
+              label: 'Cart',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Profile',
+            ),
+          ],
+        ),
       ),
     );
   }

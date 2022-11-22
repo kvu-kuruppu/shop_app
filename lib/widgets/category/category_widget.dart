@@ -5,6 +5,7 @@ import 'package:shop_app/models/category_model.dart';
 import 'dart:developer' as devtools show log;
 
 import 'package:shop_app/screens/bottom_bar.dart';
+import 'package:shop_app/widgets/home_products.dart';
 
 class CategoryWidget extends StatefulWidget {
   const CategoryWidget({Key? key}) : super(key: key);
@@ -22,18 +23,23 @@ class _CategoryWidgetState extends State<CategoryWidget> {
       padding: const EdgeInsets.fromLTRB(15, 5, 15, 10),
       child: Column(
         children: [
-          // Stores for you
+          // Products for you
           Row(
-            children: const [
-              Text(
-                'Stores for you',
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Products for you',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+              ),
+              InkWell(
+                onTap: () {},
+                child: const Text('View All', style: TextStyle(fontSize: 14)),
               ),
             ],
           ),
-          const SizedBox(
-            height: 10,
-          ),
+
+          const Divider(),
+
           SizedBox(
             height: 40,
             child: Row(
@@ -63,9 +69,8 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                     },
                   ),
                 ),
-                const SizedBox(
-                  width: 5,
-                ),
+                const SizedBox(width: 5),
+                // View All
                 Container(
                   decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 25, 10, 109),
@@ -91,6 +96,9 @@ class _CategoryWidgetState extends State<CategoryWidget> {
               ],
             ),
           ),
+
+          // Products List
+          HomeProducts(category: _selectedCategory),
         ],
       ),
     );
