@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/firestore.dart';
-import 'package:shop_app/constants/routes.dart';
 import 'package:shop_app/models/category_model.dart';
 import 'dart:developer' as devtools show log;
 
@@ -96,6 +95,8 @@ class _CategoryWidgetState extends State<CategoryWidget> {
               ],
             ),
           ),
+
+          const SizedBox(height: 20),
 
           // Products List
           HomeProducts(category: _selectedCategory),
